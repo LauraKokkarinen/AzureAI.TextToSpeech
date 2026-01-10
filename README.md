@@ -19,24 +19,25 @@ You can select which speech synthesis method you wish to use via the `appsetting
 ## Running the application
 
 1. Create an Azure AI Founry resource on your Azure subscription.
-1. Deploy a `gpt-4o` Azure Open AI model.
+1. Deploy a `gpt-4.1` Azure Open AI model.
 1. Create a custom content filter for the Azure Open AI model with high thresholds (optional, depends on content).
 1. Clone this repository onto your computer and open the solution on Visual Studio.
 1. Create an `appsettings.json` file in the project root. The file is not automatically present because it has been added to `.gitignore` to prevent the contents from being accidentally checked into version control.
 1. Add the following keys to the `appsettings.json` file and populate them with your values.
    ```json
    {
-        "OpenAIEndpoint": "https://your-resource-name.openai.azure.com/", // Get this from Azure AI Foundry
-        "OpenAIKey": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVQWXYZ", // Get this from Azure AI Foundry
-        "OpenAIDeployment": "gpt-4o",
-        "SystemMessageFilePath": "C:\\directory\\systemmessage.txt",
-        "SpeechRegion": "swedencentral", // Get this from the Speech service Overview blade
-        "SpeechKey":  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVQWXYZ", // Get this from Azure AI Foundry
-        "InputTextFilePath": "C:\\directory\\input.txt", // File containing the plain-text you wish to synthesize
-        "OutputAudioFileName": "Output file name without extension", // Created in the same directory with the text file
-        "SaveSsml": true, // Save the SSML files for debugging purposes,
-        "UseExistingSsml": true, // Instead of generating new SSML files, use the existing ones
-        "UseBatchSynthesis": false // true = use the Batch synthesis API (async), false = use SpeechSynthesizer (real-time)
+     "OpenAIEndpoint": "https://your-resource-name.openai.azure.com/", // Get this from Azure AI Foundry.
+     "OpenAIKey": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVQWXYZ", // Get this from Azure AI Foundry.
+     "OpenAIDeployment": "gpt-4.1",
+     "SystemMessageFilePath": "C:\\directory\\systemmessage.txt",
+     "SpeechRegion": "swedencentral", // Get this from the Speech service Overview blade.
+     "SpeechKey": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVQWXYZ", // Get this from Azure AI Foundry.
+     "InputTextFilePath": "C:\\directory\\input.txt", // File containing the plain-text you wish to synthesize.
+     "OutputAudioFileName": "Output file name without extension", // Created in the same directory with the text file.
+     "SaveSsml": true, // Save the SSML files for debugging purposes.
+     "CombineSsml":  true, // Combine all SSML files into a single SSML file before sending it to the speech service.
+     "UseExistingSsml": true, // Instead of generating new SSML files, use the existing ones if such exist. If none exists, generates the files as per usual.
+     "UseBatchSynthesis": false // true = use the Batch synthesis API (async), false = use SpeechSynthesizer (real-time)
    }
    ```
 1. Run the console application.
