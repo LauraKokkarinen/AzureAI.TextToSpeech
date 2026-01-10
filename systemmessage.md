@@ -68,6 +68,8 @@
          - Eliza (erinyes): en-US-Phoebe:DragonHDLatestNeural
          - Dragon: en-US-NancyMultilingualNeural (apply prosody pitch of -15%)
          - Torogar Steelfist: en-US-DavisMultilingualNeural (apply prosody pitch of -15%)
+         - Baazit the Ultraloth: it-IT-Alessio:DragonHDLatestNeural
+         - Shummrath: de-DE-SeraphinaMultilingualNeural (apply a prosody pitch of -10%)
    - IMPORTANT: DO NOT generate any dialogue or character-specific SSML blocks if the input text does not contain exact quotation marks.
 
 4. Dialogue Customization and Emotion Handling
