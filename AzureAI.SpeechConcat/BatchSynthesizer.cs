@@ -5,7 +5,7 @@ using System.IO.Compression;
 
 namespace AzureAI.Speech
 {
-    internal static class ConcatBatchSynthesizer
+    internal static class BatchSynthesizer
     {
         internal static async Task<List<string>> Run(string speechKey, string speechRegion, string directoryPath, List<string> batches)
         {

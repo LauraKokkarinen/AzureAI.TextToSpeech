@@ -42,8 +42,8 @@ class Program
         var batches = GetBatches(directoryPath);
 
         var audioFilePaths = useBatchSynthesis == true ?
-            await ConcatBatchSynthesizer.Run(speechKey, speechRegion, directoryPath, batches) :
-            await ConcatSpeechSynthesizer.Run(speechKey, speechRegion, directoryPath, batches);
+            await BatchSynthesizer.Run(speechKey, speechRegion, directoryPath, batches) :
+            await SpeechSynthesizer.Run(speechKey, speechRegion, directoryPath, batches);
 
         ConcatAudioFiles(audioFilePaths, directoryPath, $"{outputAudioFileName ?? "result"}.wav");
     }    
@@ -56,7 +56,7 @@ class Program
 
         var batches = new List<string>();
         var startIndex = 0;
-        var batchLength = 2000; // Batch size for SSML generation
+        var batchLength = 2500; // Batch size for SSML generation
         var breakAt = "\r\n";
 
         while (startIndex < textContent.Length)

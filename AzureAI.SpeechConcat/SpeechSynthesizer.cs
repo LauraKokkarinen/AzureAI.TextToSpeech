@@ -2,7 +2,7 @@
 
 namespace AzureAI.Speech
 {
-    internal static class ConcatSpeechSynthesizer
+    internal static class SpeechSynthesizer
     {
         internal static async Task<IEnumerable<string>> Run(string speechKey, string speechRegion, string directoryPath, List<string> batches)
         {
@@ -22,7 +22,7 @@ namespace AzureAI.Speech
 
             // Configure the speech synthesizer
             var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);
-            using (var speechSynthesizer = new SpeechSynthesizer(speechConfig))
+            using (var speechSynthesizer = new Microsoft.CognitiveServices.Speech.SpeechSynthesizer(speechConfig))
             {
                 // Perform the conversion
                 var result = await speechSynthesizer.SpeakSsmlAsync(content);
