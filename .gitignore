@@ -3,9 +3,9 @@
 ################################################################################
 
 /.vs
-/AzureAI.SpeechConcat/bin/Debug/net8.0
-/AzureAI.SpeechConcat/obj
-/AzureAI.SpeechConcat/appsettings.json
+/AzureAI.TextToSpeech/bin
+/AzureAI.TextToSpeech/obj
+/AzureAI.TextToSpeech/appsettings.json
 *.wav
 *.txt
 *.ssml
