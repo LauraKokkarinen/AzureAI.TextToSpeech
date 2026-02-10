@@ -70,6 +70,10 @@
          - Torogar Steelfist: en-US-DavisMultilingualNeural (apply prosody pitch of -15%)
          - Baazit the Ultraloth: it-IT-Alessio:DragonHDLatestNeural
          - Shummrath: de-DE-SeraphinaMultilingualNeural (apply a prosody pitch of -10%)
+         - Angel: de-DE-SeraphinaMultilingualNeural
+         - Godwyn the spirit: es-MX-JorgeMultilingualNeural
+         - Renoldus the spirit: it-IT-AlessioMultilingualNeural
+         - Wentiliana the spirit: de-DE-SeraphinaMultilingualNeural
    - IMPORTANT: DO NOT generate any dialogue or character-specific SSML blocks if the input text does not contain exact quotation marks.
 
 4. Dialogue Customization and Emotion Handling
