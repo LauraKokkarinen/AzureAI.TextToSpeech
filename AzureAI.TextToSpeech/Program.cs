@@ -2,8 +2,9 @@
 using NAudio.Wave.SampleProviders;
 using NAudio.Wave;
 using Microsoft.Extensions.Configuration;
-using AzureAI.Speech.Helpers;
-using AzureAI.SpeechConcat.Services;
+using AzureAI.TextToSpeech.Helpers;
+using AzureAI.TextToSpeech.Services;
+using AzureAI.TextToSpeech.Interfaces;
 
 class Program
 {
@@ -12,9 +13,10 @@ class Program
         var appSettings = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
         var configuration = new ConfigurationHelper(appSettings);
 
-        string openAIEndpoint = configuration.GetConfigurationValue<string>("OpenAIEndpoint", true)!;
-        string openAIKey = configuration.GetConfigurationValue<string>("OpenAIKey", true)!;
-        string openAIDeployment = configuration.GetConfigurationValue<string>("OpenAIDeployment", true)!;
+        string aiProvider = configuration.GetConfigurationValue<string>("AIProvider") ?? "OpenAI";
+        string aiEndpoint = configuration.GetConfigurationValue<string>("AIEndpoint", true)!;
+        string aiKey = configuration.GetConfigurationValue<string>("AIKey", true)!;
+        string aiModel = configuration.GetConfigurationValue<string>("AIModel", true)!;
         string systemMessageFilePath = configuration.GetConfigurationValue<string>("SystemMessageFilePath", true)!;
 
         string speechKey = configuration.GetConfigurationValue<string>("SpeechKey", true)!;
@@ -32,7 +34,7 @@ class Program
 
         if (useExistingSsml == false || GetBatches(directoryPath).Count == 0)
         {
-            await PrepareBatches(openAIEndpoint, openAIKey, openAIDeployment, systemMessageFilePath, inputTextFilePath, saveSsml, combineSsml);
+            await PrepareBatches(aiProvider, aiEndpoint, aiKey, aiModel, systemMessageFilePath, inputTextFilePath, saveSsml, combineSsml);
             if (combineSsml == true)
                 ConcatSsmlFiles(directoryPath);
             Console.WriteLine("SSML files have now been generated and saved on disk. You can now make modifications to them if desired. Press any key to proceed with speech synthesis.");
@@ -48,9 +50,13 @@ class Program
         ConcatAudioFiles(audioFilePaths, directoryPath, $"{outputAudioFileName ?? "result"}.wav");
     }    
 
-    private static async Task PrepareBatches(string openAiEndpoint, string openAiKey, string openAiDeployment, string systemMessageFilePath, string inputTextFilePath, bool? saveSsml, bool? combineSsml)
+    private static async Task PrepareBatches(string aiProvider, string aiEndpoint, string aiKey, string aiModel, string systemMessageFilePath, string inputTextFilePath, bool? saveSsml, bool? combineSsml)
     {
-        var openAiService = new OpenAIService(openAiEndpoint, openAiKey, openAiDeployment, File.ReadAllText(systemMessageFilePath));
+        var systemMessage = File.ReadAllText(systemMessageFilePath);
+
+        IChatService chatService = aiProvider.Equals("Anthropic", StringComparison.OrdinalIgnoreCase)
+            ? new AnthropicService(aiEndpoint, aiKey, aiModel, systemMessage)
+            : new OpenAIService(aiEndpoint, aiKey, aiModel, systemMessage);
 
         var textContent = File.ReadAllText(inputTextFilePath);
 
@@ -68,7 +74,7 @@ class Program
 
         await Parallel.ForEachAsync(batches, async (batch, _) =>
         {
-            var response = await openAiService.Chat(batch);
+            var response = await chatService.Chat(batch);
             response = response.Replace("```xml", "").Replace("```", "");
 
             if (saveSsml == true)

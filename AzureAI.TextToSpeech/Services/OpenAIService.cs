@@ -1,10 +1,11 @@
 ﻿using Azure;
 using Azure.AI.OpenAI;
+using AzureAI.TextToSpeech.Interfaces;
 using OpenAI.Chat;
 
-namespace AzureAI.SpeechConcat.Services
+namespace AzureAI.TextToSpeech.Services
 {
-    public class OpenAIService
+    public class OpenAIService : IChatService
     {
         private readonly ChatClient _chatClient;
         private readonly string _systemMessage;
