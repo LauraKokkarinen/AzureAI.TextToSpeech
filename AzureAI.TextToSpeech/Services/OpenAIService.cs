@@ -1,56 +1,53 @@
-﻿using Azure;
-using Azure.AI.OpenAI;
 using AzureAI.TextToSpeech.Interfaces;
-using OpenAI.Chat;
+using AzureAI.TextToSpeech.Types;
 
 namespace AzureAI.TextToSpeech.Services
 {
     public class OpenAIService : IChatService
     {
-        private readonly ChatClient _chatClient;
+        private readonly IHttpService _httpService;
+        private readonly string _endpoint;
+        private readonly string _model;
+        private readonly string _apiVersion;
         private readonly string _systemMessage;
+        private readonly string _key;
 
-        public OpenAIService(string endpoint, string key, string deployment, string systemMessage)
+        public OpenAIService(IHttpService httpService, string endpoint, string key, string model, string apiVersion, string systemMessage)
         {
-            var client = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
-            _chatClient = client.GetChatClient(deployment);
-
+            _httpService = httpService;
+            _endpoint = endpoint.TrimEnd('/');
+            _model = model;
+            _apiVersion = apiVersion;
             _systemMessage = systemMessage;
+            _key = key;
+        }
+
+        private Dictionary<string, string> GetHeaders()
+        {
+            return new Dictionary<string, string>
+            {
+                { "api-key", _key }
+            };
         }
 
         public async Task<string> Chat(string userMessage)
         {
-            var messages = new List<ChatMessage>
+            var requestBody = new
             {
-                new SystemChatMessage(_systemMessage),
-                new UserChatMessage(userMessage)
-            };
-
-            var options = new ChatCompletionOptions
-            {
-                Temperature = 0,
-                MaxOutputTokenCount = 4096,
-                TopP = 0,
-                FrequencyPenalty = 0,
-                PresencePenalty = 0
-            };
-
-            try
-            {
-                var completion = await _chatClient.CompleteChatAsync(messages, options);
-
-                return completion.Value.Content.First().Text;
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.Contains("429"))
+                model = _model,
+                max_completion_tokens = 8192,
+                temperature = 0,
+                messages = new object[]
                 {
-                    Thread.Sleep(5000);
-                    return await Chat(userMessage);
+                    new { role = "system", content = _systemMessage },
+                    new { role = "user", content = userMessage }
                 }
+            };
 
-                throw;
-            }
+            var url = $"{_endpoint}/openai/deployments/{_model}/chat/completions?api-version={_apiVersion}";
+            var response = await _httpService.SendAsync<OpenAIResponse>(url, HttpMethod.Post, GetHeaders(), requestBody);
+
+            return response!.Choices!.First().Message!.Content!;
         }
     }
 }

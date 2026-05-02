@@ -1,7 +1,4 @@
-﻿using AzureAI.TextToSpeech.Enums;
 using AzureAI.TextToSpeech.Interfaces;
-using System.Net;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
@@ -9,89 +6,38 @@ namespace AzureAI.TextToSpeech.Services
 {
     public class HttpService : IHttpService
     {
-        private readonly HttpClient _httpClient;
+        public static readonly HttpService Instance = new();
+        private static readonly HttpClient _httpClient = new();
+        private HttpService() { }
 
-        public HttpService()
+        public async Task<T?> SendAsync<T>(string url, HttpMethod method, Dictionary<string, string>? headers = null, object? body = null)
         {
-            _httpClient = new HttpClient();
-        }
-
-        public async Task<JsonElement?> GetResponseAsync(string url, Method method, HttpRequestHeaders? headers = null, string? body = null, string? contentType = null)
-        {
-            var request = new HttpRequestMessage(new HttpMethod(method.ToString()), url);
+            using var request = new HttpRequestMessage(method, url);
 
             if (headers != null)
             {
                 foreach (var header in headers)
                 {
-                    request.Headers.Add(header.Key, header.Value);
+                    request.Headers.TryAddWithoutValidation(header.Key, header.Value);
                 }
             }
 
-            request.Content = body != null ? new StringContent(body, Encoding.UTF8) : null;
+            request.Content = body != null ? new StringContent(JsonSerializer.Serialize(body), Encoding.UTF8, "application/json") : null;
 
-            if (request.Content != null)
-                request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse(contentType ?? "application/json");
+            using var response = await _httpClient.SendAsync(request);
+            var responseBody = await response.Content.ReadAsStringAsync();
 
-            var response = _httpClient.SendAsync(request).Result;
-
-            if (response != null)
+            if (!response.IsSuccessStatusCode)
             {
-                var status = (int)response.StatusCode;
-                bool throttled = status == 429;
-
-                if (throttled || status == 502 || status == 504)
-                {
-                    if (throttled)
-                    {
-                        var timeSpan = response.Headers.RetryAfter?.Delta?.Seconds;
-                        int milliseconds = (timeSpan ?? 5) * 1000;
-                        Thread.Sleep(milliseconds);
-                    }
-
-                    return await GetResponseAsync(url, method, headers, body, contentType); //retry
-                }
+                throw new HttpRequestException(responseBody ?? response.ReasonPhrase);
             }
 
-            var responseBody = await ReadResponseBody(response);
-
-            if (response?.IsSuccessStatusCode == true)
+            if (string.IsNullOrEmpty(responseBody))
             {
-                if (response?.StatusCode == HttpStatusCode.Accepted && response.Headers.Location != null)
-                    responseBody = GetResponseHeaders(response);
-
-                return responseBody;
-            }
-            else
-            {
-                if (response?.StatusCode == HttpStatusCode.Conflict && response.Headers.Location != null)
-                    return GetResponseHeaders(response);
-
-                throw new Exception(responseBody?.ToString() ?? response?.ReasonPhrase);
-            }
-        }
-
-        private static async Task<JsonElement?> ReadResponseBody(HttpResponseMessage? response)
-        {
-            if (response != null && response?.Content != null)
-            {
-                try
-                {
-                    string content = await response.Content.ReadAsStringAsync();
-                    return JsonSerializer.Deserialize<JsonElement>(content);
-                }
-                catch (Exception) // Response content is not in JSON format
-                {
-                    return null;
-                }
+                return default;
             }
 
-            return null;
-        }
-
-        private static JsonElement GetResponseHeaders(HttpResponseMessage response)
-        {
-            return JsonSerializer.Deserialize<JsonElement>(JsonSerializer.Serialize(response.Headers));
+            return JsonSerializer.Deserialize<T>(responseBody);
         }
     }
 }

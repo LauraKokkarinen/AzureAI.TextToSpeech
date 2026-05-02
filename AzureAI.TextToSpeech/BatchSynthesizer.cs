@@ -10,7 +10,7 @@ namespace AzureAI.Speech
     {
         internal static async Task<List<string>> Run(string speechKey, string speechRegion, string directoryPath, List<string> batches)
         {
-            var speechService = new SpeechService(new HttpService(), speechRegion, speechKey);
+            var speechService = new SpeechService(HttpService.Instance, speechRegion, speechKey);
 
             var synthesisIds = await CreateBatchSyntheses(speechService, batches);
             await WaitForSynthesesToComplete(speechService, synthesisIds);

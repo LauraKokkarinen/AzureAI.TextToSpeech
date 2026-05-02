@@ -13,10 +13,11 @@ class Program
         var appSettings = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
         var configuration = new ConfigurationHelper(appSettings);
 
-        string aiProvider = configuration.GetConfigurationValue<string>("AIProvider") ?? "OpenAI";
+        string aiProvider = configuration.GetConfigurationValue<string>("AIProvider") ?? "Anthropic";
         string aiEndpoint = configuration.GetConfigurationValue<string>("AIEndpoint", true)!;
         string aiKey = configuration.GetConfigurationValue<string>("AIKey", true)!;
         string aiModel = configuration.GetConfigurationValue<string>("AIModel", true)!;
+        string aiApiVersion = configuration.GetConfigurationValue<string>("AIApiVersion") ?? "2024-10-21";
         string systemMessageFilePath = configuration.GetConfigurationValue<string>("SystemMessageFilePath", true)!;
 
         string speechKey = configuration.GetConfigurationValue<string>("SpeechKey", true)!;
@@ -34,7 +35,7 @@ class Program
 
         if (useExistingSsml == false || GetBatches(directoryPath).Count == 0)
         {
-            await PrepareBatches(aiProvider, aiEndpoint, aiKey, aiModel, systemMessageFilePath, inputTextFilePath, saveSsml, combineSsml);
+            await PrepareBatches(aiProvider, aiEndpoint, aiKey, aiModel, aiApiVersion, systemMessageFilePath, inputTextFilePath, saveSsml, combineSsml);
             if (combineSsml == true)
                 ConcatSsmlFiles(directoryPath);
             Console.WriteLine("SSML files have now been generated and saved on disk. You can now make modifications to them if desired. Press any key to proceed with speech synthesis.");
@@ -50,19 +51,20 @@ class Program
         ConcatAudioFiles(audioFilePaths, directoryPath, $"{outputAudioFileName ?? "result"}.wav");
     }    
 
-    private static async Task PrepareBatches(string aiProvider, string aiEndpoint, string aiKey, string aiModel, string systemMessageFilePath, string inputTextFilePath, bool? saveSsml, bool? combineSsml)
+    private static async Task PrepareBatches(string aiProvider, string aiEndpoint, string aiKey, string aiModel, string aiApiVersion, string systemMessageFilePath, string inputTextFilePath, bool? saveSsml, bool? combineSsml)
     {
         var systemMessage = File.ReadAllText(systemMessageFilePath);
+        var httpService = HttpService.Instance;
 
         IChatService chatService = aiProvider.Equals("Anthropic", StringComparison.OrdinalIgnoreCase)
-            ? new AnthropicService(aiEndpoint, aiKey, aiModel, systemMessage)
-            : new OpenAIService(aiEndpoint, aiKey, aiModel, systemMessage);
+            ? new AnthropicService(httpService, aiEndpoint, aiKey, aiModel, systemMessage)
+            : new OpenAIService(httpService, aiEndpoint, aiKey, aiModel, aiApiVersion, systemMessage);
 
         var textContent = File.ReadAllText(inputTextFilePath);
 
         var batches = new List<string>();
         var startIndex = 0;
-        var batchLength = 2500; // Batch size for SSML generation
+        var batchLength = 5000; // Batch size for SSML generation
         var breakAt = "\r\n";
 
         while (startIndex < textContent.Length)

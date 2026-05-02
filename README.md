@@ -26,10 +26,11 @@ You can select which speech synthesis method you wish to use via the `appsetting
 1. Add the following keys to the `appsettings.json` file and populate them with your values.
    ```json
    {
-     "AIProvider": "OpenAI", // "OpenAI" or "Anthropic"
-     "AIEndpoint": "https://your-resource-name.openai.azure.com/", // Get this from Azure AI Foundry.
+     "AIProvider": "Anthropic", // "OpenAI" or "Anthropic"
+     "AIEndpoint": "https://your-resource-name.services.ai.azure.com/anthropic", // Get this from Azure AI Foundry.
      "AIKey": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVQWXYZ", // Get this from Azure AI Foundry.
-     "AIModel": "gpt-4.1",
+     "AIModel": "claude-sonnet-4-6",
+     "AIApiVersion": "", // Only used for OpenAI provider. Leave empty to use the default (2024-10-21).
      "SystemMessageFilePath": "C:\\directory\\systemmessage.txt",
      "SpeechRegion": "swedencentral", // Get this from the Speech service Overview blade.
      "SpeechKey": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVQWXYZ", // Get this from Azure AI Foundry.
