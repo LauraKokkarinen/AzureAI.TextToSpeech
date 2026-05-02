@@ -28,9 +28,9 @@
          - Reya Mantlemorn: en-US-Aria:DragonHDLatestNeural
          - Lyria Sarnuar: en-US-Ava3:DragonHDLatestNeural
          - Tiefling girl: en-US-Bree:DragonHDLatestNeural
-         - Nemo: en-US-Andrew:DragonHDLatestNeural
+         - Nemo: en-US-Andrew:DragonHDOmniLatestNeural
          - Pepper Whiskershadow: en-US-SaraNeural (apply a prosody pitch of 30%)
-         - Nimble Thunder: en-US-Steffan:DragonHDLatestNeural
+         - Nimble Thunder: en-US-Steffan:DragonHDOmniLatestNeural
          - Seltern: en-US-GuyNeural (apply a prosody pitch of -10%)
          - Zevlor: en-US-Andrew3:DragonHDLatestNeural
          - Pherria Jynks: en-US-Emma2:DragonHDLatestNeural
@@ -78,7 +78,7 @@
          - Olanthius: en-US-DavisMultilingualNeural
          - Bazelsteen the horned devil: en-US-GuyNeural (apply prosody pitch of -15%)
          - Glabrezu: en-US-JasonNeural (apply a prosody pitch of -25%)
-         - Jander Sunstar: en-US-Brian:DragonHDLatestNeural
+         - Jander Sunstar: en-US-Brian:DragonHDOmniLatestNeural
    - IMPORTANT: DO NOT generate any dialogue or character voiced SSML blocks if the input text does not contain exact quotation marks.
 
 4. Dialogue Customization and Emotion Handling
