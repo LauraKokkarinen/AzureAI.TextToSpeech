@@ -22,23 +22,6 @@ namespace AzureAI.TextToSpeech.Services
             return await _httpService.SendAsync<T>(url, HttpMethod.Get, GetHeaders());
         }
 
-        private async Task<IEnumerable<T>> GetCollection<T>(string url, IEnumerable<T>? items = null)
-        {
-            items ??= [];
-
-            var response = await Get<CollectionResponse<T>>(url);
-
-            if (response != null)
-            {
-                if (response?.Value != null)
-                    items = items.Concat(response.Value);
-
-                if (response?.NextLink != null)
-                    return await GetCollection<T>(response.NextLink, items);
-            }
-
-            return items;
-        }
 
         private async Task<T?> Put<T>(string url, object body)
         {
