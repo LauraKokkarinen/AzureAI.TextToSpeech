@@ -76,6 +76,8 @@
          - Wentiliana the spirit: de-DE-SeraphinaMultilingualNeural
          - Mysterious undead man: en-US-DavisNeural (apply prosody pitch of -10%; apply 'unfriendly' speaking style)
          - Olanthius: en-US-DavisMultilingualNeural
+         - Bazelsteen the horned devil: en-US-GuyNeural (apply prosody pitch of -15%)
+         - Jander Sunstar: en-US-Brian:DragonHDLatestNeural
    - IMPORTANT: DO NOT generate any dialogue or character voiced SSML blocks if the input text does not contain exact quotation marks.
 
 4. Dialogue Customization and Emotion Handling
