@@ -23,52 +23,52 @@
       - Only consider text as dialogue if it is explicitly enclosed in quotation marks (e.g., “Dialogue text”).
    - Voice Mapping:
       - Apply the following voices only to text that is exactly enclosed in quotes:
-         - Grand Duke Ulder Ravengard: en-US-Davis:DragonHDLatestNeural
-         - Gideon Lightward: en-US-Davis:DragonHDLatestNeural
-         - Reya Mantlemorn: en-US-Aria:DragonHDLatestNeural
+         - Grand Duke Ulder Ravengard: en-US-Davis:DragonHDOmniLatestNeural
+         - Gideon Lightward: en-US-Davis:DragonHDOmniLatestNeural
+         - Reya Mantlemorn: en-US-Aria:DragonHDOmniLatestNeural
          - Lyria Sarnuar: en-US-Ava3:DragonHDLatestNeural
-         - Tiefling girl: en-US-Bree:DragonHDLatestNeural
+         - Tiefling girl: en-US-Bree:DragonHDOmniLatestNeural
          - Nemo: en-US-Andrew:DragonHDOmniLatestNeural
          - Pepper Whiskershadow: en-US-SaraNeural (apply a prosody pitch of 30%)
          - Nimble Thunder: en-US-Steffan:DragonHDOmniLatestNeural
          - Seltern: en-US-GuyNeural (apply a prosody pitch of -10%)
-         - Zevlor: en-US-Andrew3:DragonHDLatestNeural
-         - Pherria Jynks: en-US-Emma2:DragonHDLatestNeural
+         - Zevlor: en-US-Andrew3:DragonHDOmniLatestNeural
+         - Pherria Jynks: en-US-Emma:DragonHDOmniLatestNeural
          - Ophurkht: en-US-FableTurboMultilingualNeural (apply a prosody pitch of 20%)
          - Gargauth: en-US-JasonNeural (apply a prosody pitch of -25%)
-         - Velcora Ashwell: en-US-Emma2:DragonHDLatestNeural
-         - Percival Starfacet: en-US-Adam:DragonHDLatestNeural
+         - Velcora Ashwell: en-US-Emma:DragonHDOmniLatestNeural
+         - Percival Starfacet: en-US-Adam:DragonHDOmniLatestNeural
          - Children: en-US-AnaNeural
          - Redcaps: en-US-TonyNeural (apply a prosody pitch of 20%)
-         - Mad Maggie: en-US-Serena:DragonHDLatestNeural
+         - Mad Maggie: en-US-Serena:DragonHDOmniLatestNeural
          - Chukka: en-US-GuyNeural (apply a prosody pitch of 20%)
          - Clonk: en-US-GuyNeural (apply a prosody pitch of 20%)
-         - Barnabas: en-US-Adam:DragonHDLatestNeural
+         - Barnabas: en-US-Adam:DragonHDOmniLatestNeural
          - Ravens: en-US-JasonNeural (apply a prosody pitch of 20%)
          - Devil: en-US-JasonNeural (apply a prosody pitch of -25%)
-         - Raphael: en-US-Adam:DragonHDLatestNeural
-         - Alaric: en-US-Brian:DragonHDLatestNeural
+         - Raphael: en-US-Adam:DragonHDOmniLatestNeural
+         - Alaric: en-US-Brian:DragonHDOmniLatestNeural
          - Mantus: en-US-DavisNeural
          - Tax collector: en-US-GuyNeural (apply a prosody pitch of -10%)
          - Hunter: en-US-NancyNeural (apply a prosody pitch of -5%)
          - Warlock: en-US-AriaNeural
          - Raggadagga: en-US-TonyNeural (apply a prosody pitch of -10%)
-         - Mahadi: fr-FR-Remy:DragonHDLatestNeural
+         - Mahadi: fr-FR-Remy:DragonHDOmniLatestNeural
          - Mahadi's servant: en-GB-OllieMultilingualNeural
          - Rassh (salamander): en-US-GuyNeural (apply prosody pitch of -15%; apply 'unfriendly' speaking style)
-         - Elliach: en-US-Brian:DragonHDLatestNeural
+         - Elliach: en-US-Brian:DragonHDOmniLatestNeural
          - Burney: en-GB-AdaMultilingualNeural
          - Tuck Quickfoot: en-GB-NoahNeural
          - Slaag (salamander): en-US-GuyNeural (apply prosody pitch of -15%; apply 'unfriendly' speaking style)
          - Hobgoblin: en-US-DavisNeural (apply prosody pitch of -10%; apply 'unfriendly' speaking style)
          - Skids (salamander): en-US-GuyNeural (apply prosody pitch of -15%; apply 'friendly' speaking style)
          - Glafnar (cloud giant): en-US-DavisNeural (apply a prosody pitch of -10%)
-         - Voice within the map: en-US-Adam:DragonHDLatestNeural
+         - Voice within the map: en-US-Adam:DragonHDOmniLatestNeural
          - Mordenkainen: en-US-OnyxTurboMultilingualNeural
-         - Eliza (erinyes): en-US-Phoebe:DragonHDLatestNeural
+         - Eliza (erinyes): en-US-Phoebe:DragonHDOmniLatestNeural
          - Dragon: en-US-NancyMultilingualNeural (apply prosody pitch of -15%)
          - Torogar Steelfist: en-US-DavisMultilingualNeural (apply prosody pitch of -15%)
-         - Baazit the Ultraloth: it-IT-Alessio:DragonHDLatestNeural
+         - Baazit the Ultraloth: it-IT-Alessio:DragonHDOmniLatestNeural
          - Shummrath: de-DE-SeraphinaMultilingualNeural (apply a prosody pitch of -10%)
          - Angel: de-DE-SeraphinaMultilingualNeural
          - Godwyn the spirit: es-MX-JorgeMultilingualNeural
@@ -155,7 +155,7 @@ EXAMPLES
 - **Input:** “Where is he?” asked a commanding voice from her left. Lyria glanced up from the table at Duke Ravengard, the leader of the Flaming Fist organization of Baldur’s Gate, sitting next to her. He was no Duke Eltan, the founder of the Flaming Fist, whom Lyria had also known personally and been quite fond of, but there was no doubt that Ravengard was a good man and deserved her respect.
 - **Expected output:**
     ```
-    <voice name="en-US-Davis:DragonHDLatestNeural">
+    <voice name="en-US-Davis:DragonHDOmniLatestNeural">
 		<lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 				“Where is he?”
@@ -183,7 +183,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Davis:DragonHDLatestNeural">
+    <voice name="en-US-Davis:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “Reya, gather our brigade. We must eradicate this threat before it gets a secure foothold and can spread further.”
@@ -191,7 +191,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Davis:DragonHDLatestNeural">
+    <voice name="en-US-Davis:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “Hold up,”
@@ -205,7 +205,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Davis:DragonHDLatestNeural">
+    <voice name="en-US-Davis:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “Don’t you think it unwise to send such a large force from the city for this task? And into a forest, even? During the delicate time of these negotiations and the large number of people gathered for the anniversary of the Companion, security within the city should be a higher priority. Surely a smaller group of soldiers would be better equipped to move through the forest undetected and deal with a few cultists?”
@@ -234,7 +234,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Davis:DragonHDLatestNeural">
+    <voice name="en-US-Davis:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “I know you are not an official member of the Flaming Fist, but I also know you are an experienced mage and a loyal citizen of Baldur’s Gate. We need one of our own there to evaluate the gravity of this cult threat to our city. Surely you wish to serve and help protect Balduran’s legacy and our home?”
@@ -303,7 +303,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Davis:DragonHDLatestNeural">
+    <voice name="en-US-Davis:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “All strategies are meaningless unless we find a way to free Elturel from Avernus itself,”
@@ -317,7 +317,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Davis:DragonHDLatestNeural">
+    <voice name="en-US-Davis:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “You said you received a vision from Torm. Could you recount it again for us? Perhaps there is meaning we missed in the chaos of yesterday.”
@@ -380,7 +380,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDLatestNeural">
+    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="unfriendly" styledegree="2">
 	            “I wouldn’t trust kenku to help us,”
@@ -395,7 +395,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Adam:DragonHDLatestNeural">
+    <voice name="en-US-Adam:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “Neither would I, but I trust facts,”
@@ -409,7 +409,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Adam:DragonHDLatestNeural">
+    <voice name="en-US-Adam:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “One such fact is that the first step toward saving Elturel is to sever the chains anchoring it to Avernus. And I believe the sword is able to release us from these chains, at least metaphorically speaking, if not literally to cut through them. After that, we simply need to return the city to the Material Plane.”
@@ -424,7 +424,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDLatestNeural">
+    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “Oh, simply, is it? Sounds delightfully uncomplicated.”
@@ -443,7 +443,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDLatestNeural">
+    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “The sword<break time="300ms"/> We’ll travel to Fort Knucklebone. Nemo believes the birdfolk we saw in the vision may be there. If they truly rescued him from the Styx, they may know where the sword and the temple are now<break time="300ms"/>or at least where to begin looking.”
@@ -465,7 +465,7 @@ EXAMPLES
   Lyria gave him a side-eye glance and slowly turned back to her untouched cup, uncertain whether to be amused, concerned, or both.
 - **Expected output:**
   ```xml
-    <voice name="en-US-Adam:DragonHDLatestNeural">
+    <voice name="en-US-Adam:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “I am Barnabath, a mighty wizzard. Onth I wath fleth and bone, but now I am<break time="300ms"/>a flame thkull!”
@@ -483,7 +483,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDLatestNeural">
+    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “I’m sorry<break time="300ms"/> you’re what?”
@@ -498,7 +498,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Adam:DragonHDLatestNeural">
+    <voice name="en-US-Adam:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “A flame thkull!”
@@ -506,7 +506,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-	<voice name="en-US-Ava3:DragonHDLatestNeural">
+	<voice name="en-US-Ava3:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “A what?” 
@@ -521,7 +521,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Adam:DragonHDLatestNeural">
+    <voice name="en-US-Adam:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="shouting" styledegree="2">
 	            “A FLAME THKULL!!!”
@@ -536,7 +536,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDLatestNeural">
+    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “Ah. A flame skull,”
@@ -555,7 +555,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Adam:DragonHDLatestNeural">
+    <voice name="en-US-Adam:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “Delightful,”
@@ -582,7 +582,7 @@ EXAMPLES
   Maggie turned, eyes gleaming. “Sit, sit! No harm ever comes to those who share bread and salt under my roof!”
 - **Expected output:**
   ```xml
-    <voice name="en-US-Serena:DragonHDLatestNeural">
+    <voice name="en-US-Serena:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="cheerful" styledegree="2">
 	            “Well, don’t just stand there collecting dust! Come on in!”
@@ -608,7 +608,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Serena:DragonHDLatestNeural">
+    <voice name="en-US-Serena:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="cheerful" styledegree="2">
 	            “Sit, sit! No harm ever comes to those who share bread and salt under my roof!”
@@ -620,7 +620,7 @@ EXAMPLES
 - **Input:** “An urgent message for you, sirs!” the young Hellrider announced after finally making it to her commander’s side, drawing Lyria’s attention back to the events inside the hall.
 - **Expected output:**
     ```
-    <voice name="en-US-Aria:DragonHDLatestNeural">
+    <voice name="en-US-Aria:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “An urgent message for you, sirs!” 
@@ -656,7 +656,7 @@ The servant inclined his head and gestured in a direction, toward something they
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Andrew:DragonHDLatestNeural">
+    <voice name="en-US-Andrew:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “Another bowl of fruit, if you please<break time="300ms"/>and a bottle of that wine you hide in the back.”
@@ -687,7 +687,7 @@ The servant inclined his head and gestured in a direction, toward something they
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Andrew:DragonHDLatestNeural">
+    <voice name="en-US-Andrew:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “What kind of a cost?”
@@ -749,7 +749,7 @@ The servant inclined his head and gestured in a direction, toward something they
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Steffan:DragonHDLatestNeural">
+    <voice name="en-US-Steffan:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “And here I almost believed generosity could survive in Hell.”
@@ -764,7 +764,7 @@ The servant inclined his head and gestured in a direction, toward something they
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDLatestNeural">
+    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “No, only commerce.”
@@ -781,7 +781,7 @@ The servant inclined his head and gestured in a direction, toward something they
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Steffan:DragonHDLatestNeural">
+    <voice name="en-US-Steffan:DragonHDOmniLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “Is there anywhere in the bazaar that takes material plane coin?”
