@@ -1,6 +1,7 @@
-﻿using AzureAI.Speech.Enums;
-using AzureAI.Speech.Services;
-using AzureAI.Speech.Types;
+﻿using AzureAI.TextToSpeech.Enums;
+using AzureAI.TextToSpeech.Services;
+using AzureAI.TextToSpeech.Types;
+using AzureAI.TextToSpeech.Interfaces;
 using System.IO.Compression;
 
 namespace AzureAI.Speech
@@ -19,7 +20,7 @@ namespace AzureAI.Speech
             return audioFilePaths;
         }
 
-        private static async Task<IEnumerable<string>> CreateBatchSyntheses(SpeechService speechService, List<string> batches)
+        private static async Task<IEnumerable<string>> CreateBatchSyntheses(ISpeechService speechService, List<string> batches)
         {
             var synthesisIds = new List<string>();
             foreach (var batch in batches)
@@ -32,7 +33,7 @@ namespace AzureAI.Speech
             return synthesisIds;
         }
 
-        private static async Task WaitForSynthesesToComplete(SpeechService speechService, IEnumerable<string> synthesisIds)
+        private static async Task WaitForSynthesesToComplete(ISpeechService speechService, IEnumerable<string> synthesisIds)
         {
             var inProgress = true;
             while (inProgress)
@@ -51,7 +52,7 @@ namespace AzureAI.Speech
             }
         }
 
-        private static async Task<IEnumerable<string>> DownloadSynthesisResults(SpeechService speechService, IEnumerable<string> synthesisIds, string? directoryPath)
+        private static async Task<IEnumerable<string>> DownloadSynthesisResults(ISpeechService speechService, IEnumerable<string> synthesisIds, string? directoryPath)
         {
             var zipFilePaths = new List<string>();
 

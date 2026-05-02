@@ -1,12 +1,13 @@
-﻿using AzureAI.Speech.Enums;
+﻿using AzureAI.TextToSpeech.Enums;
+using AzureAI.TextToSpeech.Interfaces;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
-namespace AzureAI.Speech.Services
+namespace AzureAI.TextToSpeech.Services
 {
-    public class HttpService
+    public class HttpService : IHttpService
     {
         private readonly HttpClient _httpClient;
 
