@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace AzureAI.Speech.Types
+namespace AzureAI.TextToSpeech.Types
 {
     public class BatchSynthesis
     {

@@ -1,4 +1,4 @@
-﻿namespace AzureAI.Speech.Enums
+﻿namespace AzureAI.TextToSpeech.Enums
 {
     public enum Method
     {

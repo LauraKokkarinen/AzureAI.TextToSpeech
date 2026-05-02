@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace AzureAI.Speech.Helpers
+namespace AzureAI.TextToSpeech.Helpers
 {
     public class ConfigurationHelper(IConfiguration configuration)
     {
