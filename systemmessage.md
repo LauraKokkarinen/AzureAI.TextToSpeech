@@ -805,3 +805,57 @@ The servant inclined his head and gestured in a direction, toward something they
 		</lang>
     </voice>
     ```
+- **Input:** He reached into his pocket and flicked a soul coin toward Nimble. Nimble caught it, weighed it once in his palm, and then tossed it straight to Lyria. "For you," he said simply.
+  Bazelsteen nodded approvingly. "Efficient."
+  Nimble sheathed his blade. "No need to apologise. It was quite fun. Except when that demon dispelled my very stylish spirit cloak. That was extremely rude."
+- **Expected output:**
+    ```
+    <voice name="zh-CN-XiaoxiaoMultilingualNeural">
+        <lang xml:lang="en-GB">
+			<mstts:express-as style="story" styledegree="2">
+	            He reached into his pocket and flicked a soul coin toward Nimble. Nimble caught it, weighed it once in his palm, and then tossed it straight to Lyria.
+        	</mstts:express-as>
+		</lang>
+    </voice>
+    <voice name="en-US-Steffan:DragonHDOmniLatestNeural">
+        <lang xml:lang="en-GB">
+			<mstts:express-as style="default" styledegree="2">
+	            "For you,"
+        	</mstts:express-as>
+		</lang>
+    </voice>
+    <voice name="zh-CN-XiaoxiaoMultilingualNeural">
+        <lang xml:lang="en-GB">
+			<mstts:express-as style="story" styledegree="2">
+	            he said simply.
+				<break time="450ms"/>
+				Bazelsteen nodded approvingly.
+        	</mstts:express-as>
+		</lang>
+    </voice>
+    <voice name="en-US-GuyNeural">
+        <lang xml:lang="en-GB">
+			<mstts:express-as style="appreciative" styledegree="2">
+	            <prosody pitch="-15%">
+					"Efficient."
+					<break time="450ms"/>
+				</prosody>
+        	</mstts:express-as>
+		</lang>
+    </voice>
+    <voice name="zh-CN-XiaoxiaoMultilingualNeural">
+        <lang xml:lang="en-GB">
+			<mstts:express-as style="story" styledegree="2">
+	            Nimble sheathed his blade.
+        	</mstts:express-as>
+		</lang>
+    </voice>
+    <voice name="en-US-Steffan:DragonHDOmniLatestNeural">
+        <lang xml:lang="en-GB">
+			<mstts:express-as style="default" styledegree="2">
+	            "No need to apologise. It was quite fun. Except when that demon dispelled my very stylish spirit cloak. That was extremely rude."
+				<break time="450ms"/>
+        	</mstts:express-as>
+		</lang>
+    </voice>
+    ```
