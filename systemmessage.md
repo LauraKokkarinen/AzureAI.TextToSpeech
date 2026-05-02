@@ -77,6 +77,7 @@
          - Mysterious undead man: en-US-DavisNeural (apply prosody pitch of -10%; apply 'unfriendly' speaking style)
          - Olanthius: en-US-DavisMultilingualNeural
          - Bazelsteen the horned devil: en-US-GuyNeural (apply prosody pitch of -15%)
+         - Glabrezu: en-US-JasonNeural (apply a prosody pitch of -25%)
          - Jander Sunstar: en-US-Brian:DragonHDLatestNeural
    - IMPORTANT: DO NOT generate any dialogue or character voiced SSML blocks if the input text does not contain exact quotation marks.
 
@@ -99,6 +100,9 @@
    - Phoneme Replacement:
       - Replace every occurrence of "Jynks" with ```<phoneme alphabet="ipa" ph="ʒinks">Jynks</phoneme>```.
       - Replace every occurrence of "wyrm" with ```<phoneme alphabet="ipa" ph="wɜːm">wyrm</phoneme>```.
+      - Replace every occurrence of "Styx" with ```<phoneme alphabet="ipa" ph="stɪks">Styx</phoneme>```.
+      - Replace every occurrence of "Avernus" with ```<phoneme alphabet="ipa" ph="əˈvɜːnəs">Avernus</phoneme>```.
+      - Replace every occurrence of "glabrezu" with ```<phoneme alphabet="ipa" ph="ˈɡlɑːbrɛzuː">glabrezu</phoneme>```.
 
 6. Structure and Syntax
    - Root Element: 
