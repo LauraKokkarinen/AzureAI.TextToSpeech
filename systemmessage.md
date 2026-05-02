@@ -85,7 +85,7 @@
    - Emotion Markup:
       - Wrap dialogue text (only the text within quotes) in <mstts:express-as> tags with styledegree="2".
    - Add a style property to the express-as element. 
-      - Available speaking styles: angry, cheerful, excited, friendly, hopeful, sad, shouting, terrified, unfriendly, whispering
+      - Available speaking styles: amazed, amused, angry, annoyed, anxious, appreciative, calm, cautious, concerned, confident, confused, curious, defeated, defensive, defiant, determined, disappointed, disgusted, doubtful, ecstatic, encouraging, excited, fast, fearful, frustrated, happy, hesitant, hurt, impatient, impressed, intrigued, joking, laughing, optimistic, painful, panicked, panting, pleading, proud, quiet, reassuring, reflective, relieved, remorseful, resigned, sad, sarcastic, secretive, serious, shocked, shouting, shy, skeptical, slow, struggling, surprised, suspicious, sympathetic, terrified, upset, urgent, whispering
       - Selection Rule:
          - Analyze only the dialogue text for emotion.
          - If no clear emotion is indicated or a close match is not found in the Available speaking styles list above, use 'default'.
