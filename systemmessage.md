@@ -78,7 +78,7 @@
          - Olanthius: en-US-DavisMultilingualNeural
          - Bazelsteen the horned devil: en-US-GuyNeural (apply prosody pitch of -15%)
          - Glabrezu: en-US-JasonNeural (apply a prosody pitch of -25%)
-         - Jander Sunstar: en-US-Brian:DragonHDOmniLatestNeural
+         - Jander Sunstar: en-US-Brian:DragonHDLatestNeural
    - IMPORTANT: DO NOT generate any dialogue or character voiced SSML blocks if the input text does not contain exact quotation marks.
 
 4. Dialogue Customization and Emotion Handling
