@@ -3,6 +3,7 @@ using AzureAI.TextToSpeech.Services;
 using AzureAI.TextToSpeech.Types;
 using AzureAI.TextToSpeech.Interfaces;
 using System.IO.Compression;
+using System.Text.Json;
 
 namespace AzureAI.Speech
 {
@@ -91,10 +92,48 @@ namespace AzureAI.Speech
                     audioFilePaths.Add(audioFile.FullName);
                 }
 
+                DisplayDebugErrors(extractDirInfo);
+
                 File.Delete(zipFilePath);
             }
 
             return audioFilePaths;
+        }
+
+        private static void DisplayDebugErrors(DirectoryInfo extractDirInfo)
+        {
+            var debugFiles = extractDirInfo.GetFiles("*.debug.json");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            foreach (var debugFile in debugFiles)
+            {
+                try
+                {
+                    var json = File.ReadAllText(debugFile.FullName);
+                    var debugData = JsonSerializer.Deserialize<SynthesisDebugFile>(json);
+                    var errors = debugData?.DebugInfo?.Where(r => r.HasError).ToList();
+
+                    if (errors == null || errors.Count == 0) continue;
+
+                    foreach (var error in errors)
+                    {                        
+                        Console.WriteLine($"Speech synthesis error ({error.ErrorCode}): {error.ErrorDetails}");
+                        if (!string.IsNullOrWhiteSpace(error.Ssml))
+                        {
+                            Console.WriteLine($"Problematic SSML:");
+                            Console.WriteLine(error.Ssml);
+                        }
+                        Console.WriteLine();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Failed to parse error details from {debugFile.Name}: {ex.Message}");
+                }
+            }
+
+            Console.ResetColor();
         }
     }
 }

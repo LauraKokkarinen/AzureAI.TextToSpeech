@@ -120,11 +120,19 @@ class Program
 
     private static void ConcatAudioFiles(IEnumerable<string> inputFilePaths, string directoryPath, string outputFileName)
     {
+        var filePaths = inputFilePaths.ToList();
+
+        if (filePaths.Count == 0)
+        {
+            Console.WriteLine("No audio files were produced.");
+            return;
+        }
+
         var audioFiles = new List<AudioFileReader>();
 
-        foreach (var inputFilePath in inputFilePaths)
+        foreach (var filePath in filePaths)
         {
-            audioFiles.Add(new AudioFileReader(inputFilePath));
+            audioFiles.Add(new AudioFileReader(filePath));
         }
 
         var concatResult = new ConcatenatingSampleProvider(audioFiles);
