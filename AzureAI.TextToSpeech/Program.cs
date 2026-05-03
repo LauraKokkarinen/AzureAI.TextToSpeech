@@ -43,6 +43,7 @@ class Program
             if (pauseBetweenSteps == true)
             {
                 Console.WriteLine("SSML files have now been generated and saved on disk. You can now make modifications to them if desired. Press any key to proceed with speech synthesis.");
+                Console.Beep();
                 Console.ReadKey();
             }
         }
@@ -54,6 +55,7 @@ class Program
             await SpeechSynthesizer.Run(speechKey, speechRegion, directoryPath, batches);
 
         ConcatAudioFiles(audioFilePaths, directoryPath, $"{outputAudioFileName ?? "result"}.wav");
+        Console.Beep();
     }
 
     private static async Task PrepareBatches(string aiProvider, string aiEndpoint, string aiKey, string aiModel, string aiApiVersion, string systemMessageFilePath, string inputTextFilePath, bool? saveSsml, bool? combineSsml)
