@@ -24,12 +24,13 @@ Convert the provided fantasy novel text into SSML markup according to the specif
       - Apply the following voices only to text that is exactly enclosed in quotes:
          - Grand Duke Ulder Ravengard: en-US-Davis:DragonHDOmniLatestNeural
          - Gideon Lightward: en-US-Davis:DragonHDOmniLatestNeural
-         - Reya Mantlemorn: en-US-Aria:DragonHDOmniLatestNeural
+         - Reya Mantlemorn: en-US-Aria:DragonHDLatestNeural
          - Lyria Sarnuar: en-US-Ava3:DragonHDLatestNeural
          - Tiefling girl: en-US-Bree:DragonHDOmniLatestNeural
          - Nemo: en-US-Andrew:DragonHDOmniLatestNeural
          - Pepper Whiskershadow: en-US-SaraNeural (apply a prosody pitch of 30%)
          - Nimble Thunder: en-US-Steffan:DragonHDOmniLatestNeural
+         - Sevrin Haleward: it-IT-Alessio:DragonHDOmniLatestNeural
          - Seltern: en-US-GuyNeural (apply a prosody pitch of -10%)
          - Zevlor: en-US-Andrew3:DragonHDOmniLatestNeural
          - Pherria Jynks: en-US-Emma:DragonHDOmniLatestNeural
@@ -98,12 +99,14 @@ Convert the provided fantasy novel text into SSML markup according to the specif
       - Replace any occurrence of three consecutive stars (***) with ```<break time="1800ms"/>``` (inside the ```<mstts:express-as>``` element).
       - Replace any occurrence of a long dash (—) with ```<break time="300ms"/>``` (inside the ```<mstts:express-as>``` element).
       - Replace any occurrence of three consecutive dots (...) and ellipsis (…) with ```<break time="300ms"/>``` (inside the ```<mstts:express-as>``` element).
-   - Phoneme Replacement:
+   - Phoneme Replacement (only replace exact whole-word matches, NOT partial matches within other words or derived words):
       - Replace every occurrence of "Jynks" with ```<phoneme alphabet="ipa" ph="ʒinks">Jynks</phoneme>```.
       - Replace every occurrence of "wyrm" with ```<phoneme alphabet="ipa" ph="wɜːm">wyrm</phoneme>```.
       - Replace every occurrence of "Styx" with ```<phoneme alphabet="ipa" ph="stɪks">Styx</phoneme>```.
-      - Replace every occurrence of "Avernus" with ```<phoneme alphabet="ipa" ph="əˈvɜːnəs">Avernus</phoneme>```.
+      - Replace every occurrence of "Avernus" with ```<phoneme alphabet="ipa" ph="ɑˈvɜːːnəs">Avernus</phoneme>```.
       - Replace every occurrence of "glabrezu" with ```<phoneme alphabet="ipa" ph="ˈɡlɑːbrɛzuː">glabrezu</phoneme>```.
+      - Replace every occurrence of "Zariel" with ```<phoneme alphabet="ipa" ph="ˈzɑːːrɪɛl">Zariel</phoneme>```.
+      - Replace every occurrence of "Banite" with ```<phoneme alphabet="ipa" ph="ˈbeɪnaɪt">Banite</phoneme>```.
 
 6. Structure and Syntax
    - Root Element: 
