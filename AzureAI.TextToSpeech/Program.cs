@@ -30,6 +30,7 @@ class Program
         bool? combineSsml = configuration.GetConfigurationValue<bool?>("CombineSsml");
         bool? useExistingSsml = configuration.GetConfigurationValue<bool?>("UseExistingSsml");
         bool? useBatchSynthesis = configuration.GetConfigurationValue<bool?>("UseBatchSynthesis");
+        bool? pauseBetweenSteps = configuration.GetConfigurationValue<bool?>("PauseBetweenSteps");
 
         var directoryPath = Path.GetDirectoryName(inputTextFilePath) ?? throw new Exception("Text file path is invalid.");
 
@@ -38,8 +39,12 @@ class Program
             await PrepareBatches(aiProvider, aiEndpoint, aiKey, aiModel, aiApiVersion, systemMessageFilePath, inputTextFilePath, saveSsml, combineSsml);
             if (combineSsml == true)
                 ConcatSsmlFiles(directoryPath);
-            Console.WriteLine("SSML files have now been generated and saved on disk. You can now make modifications to them if desired. Press any key to proceed with speech synthesis.");
-            Console.ReadKey();
+
+            if (pauseBetweenSteps == true)
+            {
+                Console.WriteLine("SSML files have now been generated and saved on disk. You can now make modifications to them if desired. Press any key to proceed with speech synthesis.");
+                Console.ReadKey();
+            }
         }
 
         var batches = GetBatches(directoryPath);
@@ -49,7 +54,7 @@ class Program
             await SpeechSynthesizer.Run(speechKey, speechRegion, directoryPath, batches);
 
         ConcatAudioFiles(audioFilePaths, directoryPath, $"{outputAudioFileName ?? "result"}.wav");
-    }    
+    }
 
     private static async Task PrepareBatches(string aiProvider, string aiEndpoint, string aiKey, string aiModel, string aiApiVersion, string systemMessageFilePath, string inputTextFilePath, bool? saveSsml, bool? combineSsml)
     {
@@ -82,8 +87,8 @@ class Program
             if (saveSsml == true)
                 File.WriteAllText($"{Path.GetDirectoryName(inputTextFilePath)}\\{batches.IndexOf(batch)}.ssml", response);
         });
-    }   
-    
+    }
+
     private static List<string> GetBatches(string directoryPath)
     {
         var batches = new List<string>();
@@ -111,7 +116,7 @@ class Program
         {
             concatResult += File.ReadAllText(file).Replace(openingTag, string.Empty).Replace(closingTag, string.Empty);
             File.Delete(file);
-        }           
+        }
 
         concatResult = $"{openingTag}{concatResult}{closingTag}";
 

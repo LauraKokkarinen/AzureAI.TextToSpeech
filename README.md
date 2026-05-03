@@ -9,7 +9,7 @@ The application of the SSML markup and the real-time speech synthesis happen in 
 - There is a token limit of 8192 for each Azure AI service request
 - The real-time speech synthesis has a 10-minute time limit
 
-When the SSML content file(s) have been created, the application will offer you a chance to review and fix them if needed before proceeding to the speech synthesis phase.
+When the SSML content file(s) have been created, the application will offer you a chance to review and fix them if needed before proceeding to the speech synthesis phase if `PauseBetweenSteps` is set to `true`. When set to `false`, the application will continue automatically to speech synthesis without pausing.
 
 You can select which speech synthesis method you wish to use via the `appsettings.json` file described later.
 
@@ -39,7 +39,8 @@ You can select which speech synthesis method you wish to use via the `appsetting
      "SaveSsml": true, // Save the SSML files for debugging purposes.
      "CombineSsml":  true, // Combine all SSML files into a single SSML file before sending it to the speech service (the batch synthesis API).
      "UseExistingSsml": true, // Instead of generating new SSML files, use the existing ones if such exist. If none exists, generates the files as usual.
-     "UseBatchSynthesis": false // true = use the batch synthesis API (async), false = use SpeechSynthesizer (real-time)
+     "UseBatchSynthesis": false, // true = use the batch synthesis API (async), false = use SpeechSynthesizer (real-time)
+     "PauseBetweenSteps": true // true = pause after SSML generation to allow reviewing and editing before synthesis, false = continue automatically
    }
    ```
 1. Run the console application.
