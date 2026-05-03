@@ -76,10 +76,11 @@
          - Wentiliana the spirit: de-DE-SeraphinaMultilingualNeural
          - Mysterious undead man: en-US-DavisNeural (apply prosody pitch of -10%; apply 'unfriendly' speaking style)
          - Olanthius: en-US-DavisMultilingualNeural
-         - Bazelsteen the horned devil: en-US-GuyNeural (apply prosody pitch of -15%)
+         - Bazelsteen the horned devil: it-IT-Alessio:DragonHDOmniLatestNeural
          - Glabrezu: en-US-JasonNeural (apply a prosody pitch of -25%)
          - Jander Sunstar: en-US-Brian:DragonHDLatestNeural
          - Haruman: en-US-Davis:DragonHDOmniLatestNeural
+         - Child: zh-CN-XiaoyouMultilingualNeural
    - IMPORTANT: DO NOT generate any dialogue or character voiced SSML blocks if the input text does not contain exact quotation marks.
 
 4. Dialogue Customization and Emotion Handling
@@ -115,41 +116,17 @@
       - Each segment must be wrapped in a ```<lang xml:lang="en-GB">``` tag and an ```<mstts:express-as>``` element with the appropriate style and styledegree attributes.
    - Nesting:
       - Ensure correct nesting of ```<voice>```, ```<lang>```, ```<mstts:express-as>``` and ```<prosody>``` elements per Azure AI Speech SSML standards.
-   - Voice Switching:
-      - When a sentence or paragraph contains both narrative and dialogue (i.e., quoted text, and text before or after the quoted text), split the output into separate SSML blocks that preserve the original order:
+   - Segmentation and Voice Switching:
+      - Split the input text into sequential segments of narrative (not in quotes) and dialogue (in quotes). Each segment becomes its own SSML voice block.
+      - Narrative segments use voice zh-CN-XiaoxiaoMultilingualNeural with story speaking style.
+      - Dialogue segments use the appropriate character voice block.
+      - When a sentence contains both narrative and dialogue, split into separate blocks:
          - Narration voice block for the narrative before the dialogue, if such exists.
          - A character dialogue block for the quoted text.
          - Narration voice block for the narrative after the dialogue, if such exists.
-      - DO NOT combine or omit any segments.
-
-7. Segmentation and Order Preservation
-   - Separate Blocks for Narrative and Dialogue:
-      - Split the input text into segments exactly as they appear:
-         - Narrative segments (text not in quotes) must be enclosed in a base voice block using voice zh-CN-XiaoxiaoMultilingualNeural with story speaking style. 
-         - Dialogue segments (text enclosed in quotes) must be enclosed in a character voice block.
-   - Strict Order Preservation:
-      - The SSML blocks must be output in the exact order that their corresponding segments appear in the input.
-   - DO NOT reorder or merge segments; each segment must be preserved and appear as its own block in the original sequence.
-
-8. Final Requirements
+      - The SSML blocks must be output in the exact order that their corresponding segments appear in the input. DO NOT combine, omit, or reorder any segments.
    - Validity:
       - The final SSML output must be valid and conform to Azure AI Speech SSML standards.
-   - No Extra Content:
-      - Do not add, modify, reorder, or infer any text. The output must contain exactly the same text segments as the input.
-   - One-to-One Correspondence:
-      - Every part of the input appears exactly once, decorated with the appropriate SSML markup, without any duplication or creation of new dialogue.
-
-9. Preservation of Input Order and Segmentation
-   - Order Preservation:
-      - Maintain the exact order of text segments as in the input.
-   - Segmentation Rules:
-      - If a sentence or paragraph contains narrative text both before and after a dialogue segment (i.e., text in quotes), split it into separate SSML blocks without merging or reordering.
-      - If no text is explicitly in quotes, do not create any dialogue blocks.
-
-SUMMARY:
-Only wrap exactly what is provided. Do not generate or infer any dialogue unless the text is explicitly enclosed in quotation marks. All text that is not explicitly quoted must remain in the base narrative voice. No additional or inferred dialogue is allowed under any circumstances.
-Every piece of the input text must be preserved. Narrative descriptions and actions (text not enclosed in quotes) must remain in the base narrative voice, and only text explicitly enclosed in quotes is processed as dialogue in character voice blocks. Do not generate or infer any dialogue beyond what is exactly provided.
-Preserve the original order of all text segments. Narrative text and dialogue must be output as separate, sequential SSML blocks that exactly mirror their order in the input. Do not merge or reorder any segments.
 
 EXAMPLES
 
@@ -381,7 +358,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
+    <voice name="en-US-Ava3:DragonHDLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="unfriendly" styledegree="2">
 	            “I wouldn’t trust kenku to help us,”
@@ -425,7 +402,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
+    <voice name="en-US-Ava3:DragonHDLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “Oh, simply, is it? Sounds delightfully uncomplicated.”
@@ -444,7 +421,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
+    <voice name="en-US-Ava3:DragonHDLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “The sword<break time="300ms"/> We’ll travel to Fort Knucklebone. Nemo believes the birdfolk we saw in the vision may be there. If they truly rescued him from the Styx, they may know where the sword and the temple are now<break time="300ms"/>or at least where to begin looking.”
@@ -484,7 +461,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
+    <voice name="en-US-Ava3:DragonHDLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “I’m sorry<break time="300ms"/> you’re what?”
@@ -507,7 +484,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-	<voice name="en-US-Ava3:DragonHDOmniLatestNeural">
+	<voice name="en-US-Ava3:DragonHDLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “A what?” 
@@ -537,7 +514,7 @@ EXAMPLES
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
+    <voice name="en-US-Ava3:DragonHDLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “Ah. A flame skull,”
@@ -765,7 +742,7 @@ The servant inclined his head and gestured in a direction, toward something they
         	</mstts:express-as>
 		</lang>
     </voice>
-    <voice name="en-US-Ava3:DragonHDOmniLatestNeural">
+    <voice name="en-US-Ava3:DragonHDLatestNeural">
         <lang xml:lang="en-GB">
 			<mstts:express-as style="default" styledegree="2">
 	            “No, only commerce.”
