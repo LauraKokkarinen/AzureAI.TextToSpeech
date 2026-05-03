@@ -1,9 +1,8 @@
-﻿Convert the provided fantasy novel text into SSML markup according to the specifications below without modifying, adding, inferring, or duplicating any part of the original text. Every word, punctuation mark, and space in the input must appear exactly once in the output, decorated only with the appropriate SSML elements. Do not remove or drop any narrative descriptions, actions, dialogue or other text.
+Convert the provided fantasy novel text into SSML markup according to the specifications below without modifying, adding, inferring, or duplicating any part of the original text. Every word, punctuation mark, and space in the input must appear exactly once in the output, decorated only with the appropriate SSML elements. Do not remove or drop any narrative descriptions, actions, dialogue or other text.
 
 1. Exact Input Transformation and Preservation
    - No Invented or Inferred Dialogue:
       - Only transform text that is exactly present in the input.
-      - DO NOT generate any dialogue that is not explicitly enclosed in quotation marks.
       - Use only the exact words provided; do not add, modify, or infer any additional dialogue.
    - Complete Text Preservation:
       - Every part of the input text—including narrative descriptions, actions, and dialogue—must be preserved in the output.
@@ -35,7 +34,7 @@
          - Zevlor: en-US-Andrew3:DragonHDOmniLatestNeural
          - Pherria Jynks: en-US-Emma:DragonHDOmniLatestNeural
          - Ophurkht: en-US-FableTurboMultilingualNeural (apply a prosody pitch of 20%)
-         - Gargauth: en-US-JasonNeural (apply a prosody pitch of -25%)
+         - Gargauth: en-US-JasonNeural (apply a prosody pitch of -20%; apply 'whispering' speaking style)
          - Velcora Ashwell: en-US-Emma:DragonHDOmniLatestNeural
          - Percival Starfacet: en-US-Adam:DragonHDOmniLatestNeural
          - Children: en-US-AnaNeural
@@ -78,8 +77,8 @@
          - Olanthius: en-US-DavisMultilingualNeural
          - Bazelsteen the horned devil: it-IT-Alessio:DragonHDOmniLatestNeural
          - Glabrezu: en-US-JasonNeural (apply a prosody pitch of -25%)
-         - Jander Sunstar: en-US-Brian:DragonHDLatestNeural
-         - Haruman: en-US-Davis:DragonHDOmniLatestNeural
+         - Jander Sunstar: en-US-Brian:DragonHDLatestNeural (apply 'whispering' speaking style)
+         - Haruman: en-US-DavisNeural (apply prosody pitch of -10%; apply 'shouting' speaking style)
          - Child: zh-CN-XiaoyouMultilingualNeural
    - IMPORTANT: DO NOT generate any dialogue or character voiced SSML blocks if the input text does not contain exact quotation marks.
 
@@ -91,7 +90,7 @@
       - Selection Rule:
          - Analyze only the dialogue text for emotion.
          - If no clear emotion is indicated or a close match is not found in the Available speaking styles list above, use 'default'.
-   - DO NOT invent any dialogue or assign emotional content to narrative text (text not within quotes).
+   - DO NOT assign emotional content to narrative text (text not within quotes).
 
 5. Special character replacement
    - Breaks:
@@ -118,7 +117,6 @@
       - Ensure correct nesting of ```<voice>```, ```<lang>```, ```<mstts:express-as>``` and ```<prosody>``` elements per Azure AI Speech SSML standards.
    - Segmentation and Voice Switching:
       - Split the input text into sequential segments of narrative (not in quotes) and dialogue (in quotes). Each segment becomes its own SSML voice block.
-      - Narrative segments use voice zh-CN-XiaoxiaoMultilingualNeural with story speaking style.
       - Dialogue segments use the appropriate character voice block.
       - When a sentence contains both narrative and dialogue, split into separate blocks:
          - Narration voice block for the narrative before the dialogue, if such exists.
@@ -595,25 +593,6 @@ EXAMPLES
 		</lang>
     </voice>
   ```
-- **Input:** “An urgent message for you, sirs!” the young Hellrider announced after finally making it to her commander’s side, drawing Lyria’s attention back to the events inside the hall.
-- **Expected output:**
-    ```
-    <voice name="en-US-Aria:DragonHDOmniLatestNeural">
-        <lang xml:lang="en-GB">
-			<mstts:express-as style="default" styledegree="2">
-	            “An urgent message for you, sirs!” 
-        	</mstts:express-as>
-		</lang>
-    </voice>
-    <voice name="zh-CN-XiaoxiaoMultilingualNeural">
-        <lang xml:lang="en-GB">
-			<mstts:express-as style="story" styledegree="2">
-	            the young Hellrider announced after finally making it to her commander’s side, drawing Lyria’s attention back to the events inside the hall.
-				<break time="450ms"/>
-        	</mstts:express-as>
-		</lang>
-    </voice>
-    ```
 - **Input:** Nemo stretched, furniture creaking gently under him, and called lazily. “Another bowl of fruit, if you please—and a bottle of that wine you hide in the back.”
 The servant hesitated, eyes flicking downward before he murmured, “Ah, honored guest… I fear the master’s generosity has already been spent. The feast you enjoyed was his gift. All further comforts… come at a cost.” His voice had softened toward the end, but not enough to dull the edge.
 Nemo leaned forward, suspicion narrowing his gaze. “What kind of a cost?”
