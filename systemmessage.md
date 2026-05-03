@@ -78,7 +78,7 @@ Convert the provided fantasy novel text into SSML markup according to the specif
          - Bazelsteen the horned devil: it-IT-Alessio:DragonHDOmniLatestNeural
          - Glabrezu: en-US-JasonNeural (apply a prosody pitch of -25%)
          - Jander Sunstar: en-US-Brian:DragonHDLatestNeural (apply 'whispering' speaking style)
-         - Haruman: en-US-DavisNeural (apply prosody pitch of -10%; apply 'shouting' speaking style)
+         - Haruman: en-US-Davis:DragonHDOmniLatestNeural (apply 'shouting' speaking style)
          - Child: zh-CN-XiaoyouMultilingualNeural
    - IMPORTANT: DO NOT generate any dialogue or character voiced SSML blocks if the input text does not contain exact quotation marks.
 
