@@ -81,6 +81,7 @@ Convert the provided fantasy novel text into SSML markup according to the specif
          - Jander Sunstar: en-US-Brian:DragonHDLatestNeural (apply 'whispering' speaking style)
          - Haruman: en-US-Davis:DragonHDOmniLatestNeural (apply 'shouting' speaking style)
          - Child: zh-CN-XiaoyouMultilingualNeural
+         - Bel: en-US-JasonNeural (apply a prosody pitch of -25%)
    - IMPORTANT: DO NOT generate any dialogue or character voiced SSML blocks if the input text does not contain exact quotation marks.
 
 4. Dialogue Customization and Emotion Handling
