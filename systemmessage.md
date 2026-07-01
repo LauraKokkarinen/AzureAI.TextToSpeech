@@ -25,11 +25,11 @@ Convert the provided fantasy novel text into SSML markup according to the specif
          - Grand Duke Ulder Ravengard: en-US-Davis:DragonHDOmniLatestNeural
          - Gideon Lightward: en-US-Davis:DragonHDOmniLatestNeural
          - Reya Mantlemorn: en-US-Aria:DragonHDLatestNeural
-         - Lyria Sarnuar: en-US-Ava3:DragonHDLatestNeural
+         - Lyria Sarnuar the elven wizard: en-US-Ava3:DragonHDLatestNeural
          - Tiefling girl: en-US-Bree:DragonHDOmniLatestNeural
-         - Nemo: en-US-Andrew:DragonHDOmniLatestNeural
-         - Pepper Whiskershadow: en-US-SaraNeural (apply a prosody pitch of 30%)
-         - Nimble Thunder: en-US-Steffan:DragonHDOmniLatestNeural
+         - Nemo the monk: en-US-Andrew:DragonHDOmniLatestNeural
+         - Pepper Whiskershadow the sorcerer: en-US-SaraNeural (apply a prosody pitch of 30%)
+         - Nimble Thunder the bard: en-US-Steffan:DragonHDOmniLatestNeural
          - Sevrin Haleward: it-IT-Alessio:DragonHDOmniLatestNeural
          - Seltern: en-US-GuyNeural (apply a prosody pitch of -10%)
          - Zevlor: en-US-Andrew3:DragonHDOmniLatestNeural
@@ -82,6 +82,9 @@ Convert the provided fantasy novel text into SSML markup according to the specif
          - Haruman: en-US-Davis:DragonHDOmniLatestNeural (apply 'shouting' speaking style)
          - Child: zh-CN-XiaoyouMultilingualNeural
          - Bel: en-US-JasonNeural (apply a prosody pitch of -25%)
+         - Balakros the imp: en-US-TonyNeural (apply a prosody pitch of 20%)
+         - Sibriex: de-DE-SeraphinaMultilingualNeural (apply a prosody pitch of -10%)
+         - Arcanaloth: fr-FR-Remy:DragonHDOmniLatestNeural
    - IMPORTANT: DO NOT generate any dialogue or character voiced SSML blocks if the input text does not contain exact quotation marks.
 
 4. Dialogue Customization and Emotion Handling

@@ -69,7 +69,7 @@ class Program
 
         var batches = new List<string>();
         var startIndex = 0;
-        var batchLength = 5000; // Batch size for SSML generation
+        var batchLength = 4000; // Batch size for SSML generation
         var breakAt = "\r\n";
 
         while (startIndex < textContent.Length)
